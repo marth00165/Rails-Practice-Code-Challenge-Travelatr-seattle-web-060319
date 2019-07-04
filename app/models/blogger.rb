@@ -1,34 +1,27 @@
 class Blogger < ApplicationRecord
   validates :name, {presence: true, uniqueness: true}
   validates :age, {presence: true, numericality: { greater_than: 0 }}
-  #validates bio_length
-  has_many :post
+  validates :bio, length: {minimum: 30}
+  has_many :posts
 
 
+  def total_likes
+    self.posts.map { |post| post.likes }.sum
+  end
 
-
-
-
-
-  private
-  def bio_length
-    arr = :bio.split("")
-    if arr.length <= 30
-      errors.add(:bio, 'bio needs to be more than 30 characters')
-    end
+  def most_liked
+    self.posts.sort_by{|post| post.likes}.last
   end
 
 
 
-  # validates validate_age
-  #
-  #
-  # private
-  #
-  # def validate_age
-  #     if :age <= 0
-  #         errors.add(:age, 'You should be over 0 years old.')
-  #     end
-  # end
+
+
+
+
+
+
+
+
 
 end

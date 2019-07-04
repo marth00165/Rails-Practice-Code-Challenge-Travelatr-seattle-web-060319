@@ -1,3 +1,5 @@
 <h1>Profile Page</h1>
 
-<label>Name: </label><%= @blogger.name %>
+<label>Name: </label><%= @blogger.name %> <br> <br>
+<label>Total Blog Post Likes: </label> <%= @blogger.total_likes %><br>
+<%= link_to "Most Liked Post", post_path(@blogger.most_liked)%>

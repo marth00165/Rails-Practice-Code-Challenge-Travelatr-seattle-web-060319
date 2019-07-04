@@ -1,6 +1,7 @@
 class BloggersController < ApplicationController
 
-  before_action :set_blogger, only: [:index, :show]
+  before_action :set_blogger, only: [:show]
+  before_action :blogger_params, only: [:create]
 
 
   def index
@@ -11,15 +12,29 @@ class BloggersController < ApplicationController
     @blogger = Blogger.new
   end
 
-  def show
+  def create
+    @blogger = Blogger.new(blogger_params)
+    if @blogger.save
+      redirect_to blogger_path(@blogger)
+    else
+      flash.clear
+      flash[:bio_message] = @blogger.errors.messages[:bio]
+      flash[:name_message] = @blogger.errors.messages[:name]
+      flash[:age_message] = @blogger.errors.messages[:age]
+      render :new
+    end
   end
 
 
   private
 
-  def set_blogger
-    @blogger = Blogger.find(params[:id])
-  end
+    def set_blogger
+      @blogger = Blogger.find(params[:id])
+    end
+
+    def blogger_params
+      params.require(:blogger).permit(:name, :age, :bio)
+    end
 
 
 

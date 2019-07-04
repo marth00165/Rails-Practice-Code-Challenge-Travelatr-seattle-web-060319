@@ -2,4 +2,6 @@
 
 <ol><% @bloggers.each do |blogger| %>
 <li><%= link_to blogger.name, blogger %></li><br><br>
-<% end %><ol>
+<% end %><ol><br>
+
+<h3><%= link_to "Create a new Blogger", new_blogger_path %></h3>
