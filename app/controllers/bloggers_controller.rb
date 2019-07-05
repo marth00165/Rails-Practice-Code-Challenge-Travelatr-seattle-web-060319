@@ -1,6 +1,6 @@
 class BloggersController < ApplicationController
 
-  before_action :set_blogger, only: [:show]
+  before_action :set_blogger, only: [:show, :destroy]
   before_action :blogger_params, only: [:create]
 
 
@@ -23,6 +23,15 @@ class BloggersController < ApplicationController
       flash[:age_message] = @blogger.errors.messages[:age]
       render :new
     end
+  end
+
+
+  def destroy
+
+    @blogger.destroy
+    @blogger.posts.destroy
+
+    redirect_to @blogger
   end
 
 

@@ -1,0 +1,11 @@
+<h1>ALL Posts</h1>
+
+<h3><%= link_to "Create a new Post", new_post_path%> </h3>
+
+<ol>
+  <% @posts.each do |post|%>
+  <li><%= link_to post.title %></li><br>
+  <%= link_to 'Delete Post', post_path(post.id), method: :delete, data:{confirm: 'you sure bro?'}%>
+  <br><br>
+  <% end %>
+</ol><br>

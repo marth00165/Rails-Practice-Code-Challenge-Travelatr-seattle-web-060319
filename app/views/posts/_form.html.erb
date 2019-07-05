@@ -1,0 +1,9 @@
+<h1>New Post: </h1><br><br>
+
+<%=form_for  :post do |f|%>
+Title: <%= f.text_field :title %><br>
+Content: <%= f.text_area :content%><br>
+Blogger: <%= f.collection_select :blogger_id, Blogger.all, :id, :name %><br>
+Destination: <%= f.collection_select :destination_id, Destination.all, :id, :name %><br>
+<%= f.submit %>
+<%end%>

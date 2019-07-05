@@ -2,4 +2,11 @@
 
 <label>Name: </label><%= @blogger.name %> <br> <br>
 <label>Total Blog Post Likes: </label> <%= @blogger.total_likes %><br>
+
+<% if @blogger.posts.length > 0 %>
 <%= link_to "Most Liked Post", post_path(@blogger.most_liked)%>
+<%end%><br><br>
+
+<h3><%= link_to 'Delete Blogger Profile', blogger_path(@blogger), method: :delete, data:{confirm: 'you sure bro?'}%></h3>
+<h3><%= link_to 'Create Another Blogger Profile', new_blogger_path%></h3>
+<h3><%= link_to  'Back to Blogger List', bloggers_path%></h3>
